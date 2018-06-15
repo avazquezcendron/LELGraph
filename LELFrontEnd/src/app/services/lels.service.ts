@@ -1,13 +1,28 @@
 import { Injectable } from '@angular/core';
 import { LEL } from '../BEs/lel';
 import { Simbolo } from '../BEs/simbolo';
+import { Categoria } from '../types/categorias';
+import { Impacto } from '../BEs/impacto';
 
 @Injectable()
 export class LELsService {
 
+
+  private _impactos: Impacto[] = [
+    {
+      id: 1, descripcion: 'Un Impacto', simbolos: null
+    }
+  ];
+
+  private _simbolos: Simbolo[] = [
+    {
+      id: 1, nocion: 'Una noción', impactos: this._impactos, categoria: Categoria.objeto, peso: 1
+    }
+  ];
+
   private _lels: LEL[] = [
     {id: 1, titulo: 'Sistema de Seguros', descripcion: 'LEL de Prueba',
-      simbolos: null
+      simbolos: this._simbolos,
     }
   ];
 
