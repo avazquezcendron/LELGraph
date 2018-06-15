@@ -1,0 +1,35 @@
+<div class="search-box">
+  <mat-icon>search</mat-icon>
+  <mat-form-field>
+    <input matInput #filtrar placeholder="filtrar..." (keyup)="Filtrar(filtrar.value)">
+  </mat-form-field>
+</div>
+
+<div class="tabla mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+    <!-- Position Column -->
+    <ng-container matColumnDef="titulo">
+      <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="descripcion">
+      <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.descripcion}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="acciones">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-button [matMenuTriggerFor]="menu" class="accion">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="EditarLEL(element)">Editar</button>
+          <button mat-menu-item (click)="EliminarLEL(element)">Eliminar</button>
+        </mat-menu>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+<button mat-fab class="add-button" (click)="Agregar()">+</button>

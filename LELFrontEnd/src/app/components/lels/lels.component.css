@@ -1,0 +1,48 @@
+.avatar {
+  margin-right: 0.5em;
+  color: #ccc;
+  font-size: 24px;
+}
+h2 {
+  display: flex;
+}
+.lista {
+  padding: 0;
+}
+.lel-list-item {
+  border-bottom: 1px solid #ddd;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.lel-list-item:hover {
+  background-color: #eee;
+}
+.lel-list-item p {
+  padding-left: 2.5em;
+}
+.lel-seleccionado {
+  background-color: indigo !important;
+  color: #fff;
+  font-weight: bold;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-box mat-form-field {
+  flex: 1 1 auto;
+}
+.add-button {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 32px;
+}
+:host {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  right: 8px;
+  bottom: 8px;
+}
