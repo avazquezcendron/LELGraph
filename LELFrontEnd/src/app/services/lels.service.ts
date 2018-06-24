@@ -10,13 +10,18 @@ export class LELsService {
 
   private _impactos: Impacto[] = [
     {
-      id: 1, descripcion: 'Un Impacto', simbolos: null
+      id: 1, descripcion: 'El Cliente Contrata una Póliza', simbolos: null
     }
   ];
 
   private _simbolos: Simbolo[] = [
     {
-      id: 1, nocion: 'Una noción', impactos: this._impactos, categoria: Categoria.objeto, peso: 1
+      id: 1, nombre: 'Cliente', nocion: 'Persona que contrata una Póliza',
+      impactos: this._impactos, categoria: Categoria.Sujeto, peso: 3
+    },
+    {
+      id: 2, nombre: 'Póliza', nocion: 'Contrato entre una Aseguradora y un Clente',
+      impactos: this._impactos, categoria: Categoria.Objeto, peso: 4
     }
   ];
 

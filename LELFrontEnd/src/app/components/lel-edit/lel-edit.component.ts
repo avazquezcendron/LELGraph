@@ -1,7 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LEL } from '../../BEs/lel';
+import { Simbolo } from '../../BEs/simbolo';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatTableDataSource } from '@angular/material';
 import { LELsService } from '../../services/lels.service';
+import { Categoria } from '../../types/categorias';
 
 @Component({
   selector: 'app-lel-edit',
@@ -10,6 +13,8 @@ import { LELsService } from '../../services/lels.service';
 })
 export class LelEditComponent implements OnInit {
 
+  dataSource: MatTableDataSource<Simbolo>;
+  displayedColumns = ['nombre', 'categoria', 'nocion', 'peso', 'acciones'];
   lelSeleccionado: LEL;
 
   constructor(private _router: Router,
@@ -26,6 +31,7 @@ export class LelEditComponent implements OnInit {
     } else {
       this.lelSeleccionado = this._lelSrv.Get(id);
     }
+    this.dataSource = new MatTableDataSource(this.lelSeleccionado.simbolos);
   }
 
   Regresar() {
@@ -43,4 +49,21 @@ export class LelEditComponent implements OnInit {
     }
     this.Regresar();
   }
+
+  EditarSimbolo(simbolo: Simbolo) {
+
+  }
+
+  AgregarSimbolo() {
+
+  }
+
+  EliminarSimbolo(simbolo: Simbolo) {
+
+  }
+
+  convert(cat: string) {
+    return Categoria[cat];
+  }
+
 }

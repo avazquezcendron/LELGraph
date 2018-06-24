@@ -1,6 +1,6 @@
 export enum Categoria {
-  sujeto = 0,
-  objeto = 1,
-  verbo = 2,
-  estado = 3
+  Sujeto = 0,
+  Objeto = 1,
+  Verbo = 2,
+  Estado = 3
 }
