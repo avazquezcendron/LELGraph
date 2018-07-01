@@ -1,0 +1,68 @@
+<mat-card *ngIf="simboloSeleccionado">
+  <h2 *ngIf="simboloSeleccionado.id != 0">Editar Símbolo</h2>
+  <h2 *ngIf="simboloSeleccionado.id == 0">Agregar Símbolo</h2>
+  <form novalidate #f="ngForm">
+    <mat-form-field class="all-width">
+      <input matInput required name="nombre" placeholder="Nombre" [ngModel]="simboloSeleccionado.nombre" #nombre="ngModel">
+      <mat-error *ngIf="nombre.invalid">Debe ingresar el Nombre</mat-error>
+    </mat-form-field>
+    <mat-form-field class="all-width">
+        <mat-select name="categoria" placeholder="Categoria" [ngModel]="simboloSeleccionado.categoria">
+          <mat-option [value]="0">Sujeto</mat-option>
+          <mat-option [value]="1">Objeto</mat-option>
+          <mat-option [value]="2">Verbo</mat-option>
+          <mat-option [value]="3">Estado</mat-option>
+        </mat-select>
+      </mat-form-field>
+    <mat-form-field class="all-width">
+      <input matInput required name="nocion" placeholder="Noción" [ngModel]="simboloSeleccionado.nocion" #nocion="ngModel">
+      <mat-error *ngIf="nocion.invalid">Debe ingresar la Noción</mat-error>
+    </mat-form-field>
+    <mat-form-field class="all-width">
+        <input matInput required name="peso" placeholder="Peso" [ngModel]="simboloSeleccionado.peso" #peso="ngModel">
+        <mat-error *ngIf="peso.invalid">Debe ingresar el Peso</mat-error>
+    </mat-form-field>
+    <h3>Impactos:</h3>
+    <div class="search-box">
+      <mat-icon>search</mat-icon>
+      <mat-form-field>
+        <input matInput #filtrar placeholder="filtrar..." (keyup)="Filtrar(filtrar.value)">
+      </mat-form-field>
+    </div>
+    <div class="tabla mat-elevation-z8">
+      <mat-table #table [dataSource]="dataSource">
+        <!-- Position Column -->
+        <ng-container matColumnDef="descripcion">
+          <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.descripcion}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-button [matMenuTriggerFor]="menu" class="accion">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="EditarImpacto(element)">Editar</button>
+              <button mat-menu-item (click)="EliminarImpacto(element)">Eliminar</button>
+            </mat-menu>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <button mat-button (click)="AgregarImpacto()">Nuevo Impacto</button>
+    </div>
+    <br/>
+    <mat-card-actions>
+      <button mat-button class="btn btn-default" (click)="Regresar()">
+        Cancelar
+      </button>
+      <button mat-button color="primary" [disabled]="f.invalid" (click)="Guardar(f.value)" class="btn btn-primary">
+        Aceptar
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>
+<br/>
+<br/>

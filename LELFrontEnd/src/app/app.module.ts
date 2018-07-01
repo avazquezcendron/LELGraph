@@ -19,12 +19,16 @@ import { MatMenuModule } from '@angular/material/menu';
 import { LelsComponent } from './components/lels/lels.component';
 import { LELsService } from './services/lels.service';
 import { LelEditComponent } from './components/lel-edit/lel-edit.component';
+import { SimbolosService } from './services/simbolos.service';
+import { ImpactosService } from './services/impactos.service';
+import { SimboloEditComponent } from './components/simbolo-edit/simbolo-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LelsComponent,
-    LelEditComponent
+    LelEditComponent,
+    SimboloEditComponent
   ],
   imports: [
     BrowserModule,
@@ -43,12 +47,13 @@ import { LelEditComponent } from './components/lel-edit/lel-edit.component';
     MatTableModule,
     MatMenuModule,
     RouterModule.forRoot([
-      { path: 'lels' , component: LelsComponent},
-      { path: 'lel-edit/:operacion/:id' , component: LelEditComponent},
+      { path: 'lels' , component: LelsComponent },
+      { path: 'lel-edit/:operacion/:id' , component: LelEditComponent },
+      { path: 'simbolo-edit/:operacion/:lelId/:id' , component: SimboloEditComponent },
       { path: '', redirectTo: '/lels', pathMatch: 'full' },
     ])
   ],
-  providers: [LELsService],
+  providers: [LELsService, SimbolosService, ImpactosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

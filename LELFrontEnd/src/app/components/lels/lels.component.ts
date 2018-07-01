@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { LELsService } from '../../services/lels.service';
 import { LEL } from '../../BEs/lel';

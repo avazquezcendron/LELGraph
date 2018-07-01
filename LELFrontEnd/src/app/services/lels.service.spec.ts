@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { LelsService } from './lels.service';
+import { LELsService } from './lels.service';
 
 describe('LelsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [LelsService]
+      providers: [LELsService]
     });
   });
 
-  it('should be created', inject([LelsService], (service: LelsService) => {
+  it('should be created', inject([LELsService], (service: LELsService) => {
     expect(service).toBeTruthy();
   }));
 });

@@ -4,6 +4,7 @@ import { Simbolo } from '../../BEs/simbolo';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material';
 import { LELsService } from '../../services/lels.service';
+import { SimbolosService } from '../../services/simbolos.service';
 import { Categoria } from '../../types/categorias';
 
 @Component({
@@ -19,7 +20,8 @@ export class LelEditComponent implements OnInit {
 
   constructor(private _router: Router,
     private _activeRoute: ActivatedRoute,
-    private _lelSrv: LELsService
+    private _lelSrv: LELsService,
+    private _simboloSrv: SimbolosService
   ) {}
 
   ngOnInit() {
@@ -50,16 +52,22 @@ export class LelEditComponent implements OnInit {
     this.Regresar();
   }
 
-  EditarSimbolo(simbolo: Simbolo) {
+  Filtrar(filtro: string) {
+    this.lelSeleccionado.simbolos = this._simboloSrv.FindbyNombreONocion(filtro);
+    this.dataSource = new MatTableDataSource(this.lelSeleccionado.simbolos);
+  }
 
+  EditarSimbolo(simbolo: Simbolo) {
+    this._router.navigate(['/simbolo-edit', 'editar', this.lelSeleccionado.id, simbolo.id]);
   }
 
   AgregarSimbolo() {
-
+    this._router.navigate(['/simbolo-edit', 'agregar', this.lelSeleccionado.id, 0]);
   }
 
   EliminarSimbolo(simbolo: Simbolo) {
-
+    this._simboloSrv.Delete(simbolo.id);
+    this.dataSource = new MatTableDataSource(this.lelSeleccionado.simbolos);
   }
 
   convert(cat: string) {

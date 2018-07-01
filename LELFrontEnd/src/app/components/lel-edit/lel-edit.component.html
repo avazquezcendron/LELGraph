@@ -10,7 +10,13 @@
       <input matInput required name="descripcion" placeholder="Descripción" [ngModel]="lelSeleccionado.descripcion" #descripcion="ngModel">
       <mat-error *ngIf="descripcion.invalid">Debe ingresar el apellido</mat-error>
     </mat-form-field>
-    <br/>
+    <h3>Símbolos:</h3>
+    <div class="search-box">
+      <mat-icon>search</mat-icon>
+      <mat-form-field>
+        <input matInput #filtrar placeholder="filtrar..." (keyup)="Filtrar(filtrar.value)">
+      </mat-form-field>
+    </div>
     <div class="tabla mat-elevation-z8">
       <mat-table #table [dataSource]="dataSource">
         <!-- Position Column -->
@@ -37,7 +43,6 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="AgregarSimbolo(element)">Agregar</button>
               <button mat-menu-item (click)="EditarSimbolo(element)">Editar</button>
               <button mat-menu-item (click)="EliminarSimbolo(element)">Eliminar</button>
             </mat-menu>
@@ -46,6 +51,7 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
+      <button mat-button (click)="AgregarSimbolo()">Nuevo Símbolo</button>
     </div>
     <br/>
     <mat-card-actions>
