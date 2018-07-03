@@ -6,14 +6,14 @@ export class ImpactosService {
 
   private _impactos: Impacto[] = [
     {
-      id: 1, descripcion: 'El Cliente Contrata una Póliza', simbolos: null
+      id: 1, descripcion: 'El Cliente Contrata una Póliza', simbolos: [1, 2]
     }
   ];
 
   constructor() { }
 
-  GetAll(): Impacto[] {
-    return this._impactos;
+  GetAll(simboloId: number): Impacto[] {
+    return this._impactos.filter(a => (a.simbolos.includes(simboloId)));
   }
 
   Get(id: number): Impacto {
@@ -44,8 +44,8 @@ export class ImpactosService {
     }
   }
 
-  FindbyDescripcion(searchString: string) {
-    return this._impactos
+  FindbyDescripcion(simboloId, searchString: string) {
+    return this.GetAll(simboloId)
       .filter(a => (a.descripcion)
         .toLowerCase().indexOf(searchString.toLocaleLowerCase()) >= 0);
   }

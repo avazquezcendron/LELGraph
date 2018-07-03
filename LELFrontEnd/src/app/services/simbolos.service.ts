@@ -8,19 +8,19 @@ export class SimbolosService {
 
   private _simbolos: Simbolo[] = [
     {
-      id: 1, nombre: 'Cliente', nocion: 'Persona que contrata una Póliza',
-      impactos: this._impactosSrv.GetAll(), categoria: Categoria.Sujeto, peso: 3
+      id: 1, lelId: 1, nombre: 'Cliente', nocion: 'Persona que contrata una Póliza',
+      categoria: Categoria.Sujeto, peso: 3
     },
     {
-      id: 2, nombre: 'Póliza', nocion: 'Contrato entre una Aseguradora y un Cliente',
-      impactos: this._impactosSrv.GetAll(), categoria: Categoria.Objeto, peso: 4
+      id: 2, lelId: 1, nombre: 'Póliza', nocion: 'Contrato entre una Aseguradora y un Cliente',
+      categoria: Categoria.Objeto, peso: 4
     }
   ];
 
   constructor(private _impactosSrv: ImpactosService) { }
 
-  GetAll(): Simbolo[] {
-    return this._simbolos;
+  GetAll(lelId: number): Simbolo[] {
+    return this._simbolos.filter(a => a.lelId === lelId);
   }
 
   Get(id: number): Simbolo {
@@ -51,8 +51,8 @@ export class SimbolosService {
     }
   }
 
-  FindbyNombreONocion(searchString: string) {
-    return this._simbolos
+  FindbyNombreONocion(lelId: number, searchString: string) {
+    return this.GetAll(lelId)
       .filter(a => (a.nombre + ' ' +
         a.nocion).toLowerCase().indexOf(searchString.toLocaleLowerCase()) >= 0);
   }

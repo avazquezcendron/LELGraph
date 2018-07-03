@@ -6,8 +6,8 @@ import { SimbolosService } from './simbolos.service';
 export class LELsService {
 
   private _lels: LEL[] = [
-    {id: 1, titulo: 'Sistema de Seguros', descripcion: 'LEL de Prueba',
-      simbolos: this._simbolosSrv.GetAll(),
+    {
+      id: 1, titulo: 'Sistema de Seguros', descripcion: 'LEL de Prueba'
     }
   ];
 

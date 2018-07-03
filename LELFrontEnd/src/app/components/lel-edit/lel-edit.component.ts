@@ -29,11 +29,11 @@ export class LelEditComponent implements OnInit {
     const id = Number(this._activeRoute.snapshot.paramMap.get('id'));
 
     if (operacion === 'agregar') {
-      this.lelSeleccionado = new LEL(0, '', '', null);
+      this.lelSeleccionado = new LEL(0, '', '');
     } else {
       this.lelSeleccionado = this._lelSrv.Get(id);
     }
-    this.dataSource = new MatTableDataSource(this.lelSeleccionado.simbolos);
+    this.dataSource = new MatTableDataSource(this._simboloSrv.GetAll(this.lelSeleccionado.id));
   }
 
   Regresar() {
@@ -53,8 +53,7 @@ export class LelEditComponent implements OnInit {
   }
 
   Filtrar(filtro: string) {
-    this.lelSeleccionado.simbolos = this._simboloSrv.FindbyNombreONocion(filtro);
-    this.dataSource = new MatTableDataSource(this.lelSeleccionado.simbolos);
+    this.dataSource = new MatTableDataSource(this._simboloSrv.FindbyNombreONocion(this.lelSeleccionado.id, filtro));
   }
 
   EditarSimbolo(simbolo: Simbolo) {
@@ -67,7 +66,7 @@ export class LelEditComponent implements OnInit {
 
   EliminarSimbolo(simbolo: Simbolo) {
     this._simboloSrv.Delete(simbolo.id);
-    this.dataSource = new MatTableDataSource(this.lelSeleccionado.simbolos);
+    this.dataSource = new MatTableDataSource(this._simboloSrv.GetAll(this.lelSeleccionado.id));
   }
 
   convert(cat: string) {

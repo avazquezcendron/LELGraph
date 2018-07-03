@@ -29,13 +29,14 @@ export class SimboloEditComponent implements OnInit {
   ngOnInit() {
     const operacion = this._activeRoute.snapshot.paramMap.get('operacion');
     const id = Number(this._activeRoute.snapshot.paramMap.get('id'));
+    const lelId = Number(this._activeRoute.snapshot.paramMap.get('lelId'));
 
     if (operacion === 'agregar') {
-      this.simboloSeleccionado = new Simbolo(0, '', Categoria.Sujeto, '', null, 1);
+      this.simboloSeleccionado = new Simbolo(0, lelId, '', Categoria.Sujeto, '', 1);
     } else {
       this.simboloSeleccionado = this._simboloSrv.Get(id);
     }
-    this.dataSource = new MatTableDataSource(this.simboloSeleccionado.impactos);
+    this.dataSource = new MatTableDataSource(this._impactoSrv.GetAll(this.simboloSeleccionado.id));
   }
 
   Regresar() {
@@ -56,8 +57,7 @@ export class SimboloEditComponent implements OnInit {
   }
 
   Filtrar(filtro: string) {
-    this.simboloSeleccionado.impactos = this._impactoSrv.FindbyDescripcion(filtro);
-    this.dataSource = new MatTableDataSource(this.simboloSeleccionado.impactos);
+    this.dataSource = new MatTableDataSource(this._impactoSrv.FindbyDescripcion(this.simboloSeleccionado.id, filtro));
   }
 
   EditarImpacto(impacto: Impacto) {
@@ -70,7 +70,7 @@ export class SimboloEditComponent implements OnInit {
 
   EliminarImpacto(impacto: Impacto) {
     this._impactoSrv.Delete(impacto.id);
-    this.dataSource = new MatTableDataSource(this.simboloSeleccionado.impactos);
+    this.dataSource = new MatTableDataSource(this._impactoSrv.GetAll(this.simboloSeleccionado.id));
   }
 
   convert(cat: string) {
