@@ -22,13 +22,17 @@ import { LelEditComponent } from './components/lel-edit/lel-edit.component';
 import { SimbolosService } from './services/simbolos.service';
 import { ImpactosService } from './services/impactos.service';
 import { SimboloEditComponent } from './components/simbolo-edit/simbolo-edit.component';
+import { LelGraphComponent } from './components/lel-graph/lel-graph.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxGraphModule } from '@swimlane/ngx-graph/src';
 
 @NgModule({
   declarations: [
     AppComponent,
     LelsComponent,
     LelEditComponent,
-    SimboloEditComponent
+    SimboloEditComponent,
+    LelGraphComponent
   ],
   imports: [
     BrowserModule,
@@ -46,8 +50,11 @@ import { SimboloEditComponent } from './components/simbolo-edit/simbolo-edit.com
     MatButtonModule,
     MatTableModule,
     MatMenuModule,
+    NgxChartsModule,
+    NgxGraphModule,
     RouterModule.forRoot([
-      { path: 'lels' , component: LelsComponent },
+      { path: 'lels', component: LelsComponent },
+      { path: 'lel-graph' , component: LelGraphComponent },
       { path: 'lel-edit/:operacion/:id' , component: LelEditComponent },
       { path: 'simbolo-edit/:operacion/:lelId/:id' , component: SimboloEditComponent },
       { path: '', redirectTo: '/lels', pathMatch: 'full' },
