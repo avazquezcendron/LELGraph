@@ -52,15 +52,18 @@
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
-        <button mat-button (click)="AgregarSimbolo()">Nuevo Símbolo</button>
       </div>
+      <br/>
+      <button mat-raised-button color="primary" (click)="AgregarSimbolo()">Nuevo Símbolo</button>
     </div>
     <br/>
+    <br/>
+    <br/>
     <mat-card-actions>
-      <button mat-button class="btn btn-default" (click)="Regresar()">
+      <button mat-raised-button class="btn btn-default" (click)="Regresar()">
         Cancelar
       </button>
-      <button mat-button color="primary" [disabled]="f.invalid" (click)="Guardar(f.value)" class="btn btn-primary">
+      <button mat-raised-button color="primary" [disabled]="f.invalid" (click)="Guardar(f.value)" class="btn btn-primary">
         Aceptar
       </button>
     </mat-card-actions>

@@ -1,19 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { LelsComponent } from './lels.component';
 
-describe('LelsComponent', () => {
-  let component: LelsComponent;
-  let fixture: ComponentFixture<LelsComponent>;
+import { LelStatsComponent } from './lel-stats.component';
+
+describe('LelStatsComponent', () => {
+  let component: LelStatsComponent;
+  let fixture: ComponentFixture<LelStatsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LelsComponent ]
+      declarations: [ LelStatsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LelsComponent);
+    fixture = TestBed.createComponent(LelStatsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

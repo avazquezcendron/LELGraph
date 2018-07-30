@@ -27,9 +27,9 @@ export class SimboloEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const operacion = this._activeRoute.snapshot.paramMap.get('operacion');
-    const id = Number(this._activeRoute.snapshot.paramMap.get('id'));
-    const lelId = Number(this._activeRoute.snapshot.paramMap.get('lelId'));
+    const operacion = this._activeRoute.snapshot.paramMap.get('sbOp');
+    const id = Number(this._activeRoute.snapshot.paramMap.get('sbId'));
+    const lelId = Number(this._activeRoute.snapshot.paramMap.get('id'));
 
     if (operacion === 'agregar') {
       this.simboloSeleccionado = new Simbolo(0, lelId, '', Categoria.Sujeto, '', 1);
@@ -40,8 +40,8 @@ export class SimboloEditComponent implements OnInit {
   }
 
   Regresar() {
-    const lelId = Number(this._activeRoute.snapshot.paramMap.get('lelId'));
-    this._router.navigate(['/lel-edit', 'editar', lelId]);
+    const lelId = Number(this._activeRoute.snapshot.paramMap.get('id'));
+    this._router.navigate(['/lels', lelId, 'editar' ]);
   }
 
   Guardar(form: any) {

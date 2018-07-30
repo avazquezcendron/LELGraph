@@ -14,6 +14,18 @@ export class SimbolosService {
     {
       id: 2, lelId: 1, nombre: 'Póliza', nocion: 'Contrato entre una Aseguradora y un Cliente',
       categoria: Categoria.Objeto, peso: 4
+    },
+    {
+      id: 3, lelId: 1, nombre: 'Bróker',
+      nocion: `Intermediario entre el cliente y la aseguradora.
+      El bróker puede desempeñar el rol del productor`,
+      categoria: Categoria.Sujeto, peso: 4
+    },
+    {
+      id: 4, lelId: 1, nombre: 'Aseguradora',
+      nocion: `Compañía que define las condiciones de una póliza
+      y paga ante un siniestro.`,
+      categoria: Categoria.Sujeto, peso: 3
     }
   ];
 

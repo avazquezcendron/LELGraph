@@ -17,6 +17,7 @@ export class LelEditComponent implements OnInit {
   dataSource: MatTableDataSource<Simbolo>;
   displayedColumns = ['nombre', 'categoria', 'nocion', 'peso', 'acciones'];
   lelSeleccionado: LEL;
+  operacion: string;
 
   constructor(private _router: Router,
     private _activeRoute: ActivatedRoute,
@@ -25,10 +26,10 @@ export class LelEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const operacion = this._activeRoute.snapshot.paramMap.get('operacion');
+    this.operacion = this._activeRoute.snapshot.paramMap.get('op');
     const id = Number(this._activeRoute.snapshot.paramMap.get('id'));
 
-    if (operacion === 'agregar') {
+    if (this.operacion === 'agregar') {
       this.lelSeleccionado = new LEL(0, '', '');
     } else {
       this.lelSeleccionado = this._lelSrv.Get(id);
@@ -57,11 +58,13 @@ export class LelEditComponent implements OnInit {
   }
 
   EditarSimbolo(simbolo: Simbolo) {
-    this._router.navigate(['/simbolo-edit', 'editar', this.lelSeleccionado.id, simbolo.id]);
+    this._router.navigate(['/lels', this.lelSeleccionado.id,
+      this.operacion, 'simbolo', simbolo.id, 'editar']);
   }
 
   AgregarSimbolo() {
-    this._router.navigate(['/simbolo-edit', 'agregar', this.lelSeleccionado.id, 0]);
+    this._router.navigate(['/lels', this.lelSeleccionado.id,
+    this.operacion, 'simbolo', 0, 'agregar']);
   }
 
   EliminarSimbolo(simbolo: Simbolo) {

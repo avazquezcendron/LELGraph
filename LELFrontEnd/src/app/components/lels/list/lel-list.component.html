@@ -4,7 +4,6 @@
     <input matInput #filtrar placeholder="filtrar..." (keyup)="Filtrar(filtrar.value)">
   </mat-form-field>
 </div>
-
 <div class="tabla mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource">
     <!-- Position Column -->
@@ -22,6 +21,9 @@
         <button mat-button [matMenuTriggerFor]="menu" class="accion">
           <mat-icon>more_vert</mat-icon>
         </button>
+        <button mat-button (click)="GoToGraph(element)" class="accion" title="Estadísticas">
+          <mat-icon>assessment</mat-icon>
+        </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item (click)="EditarLEL(element)">Editar</button>
           <button mat-menu-item (click)="EliminarLEL(element)">Eliminar</button>
@@ -33,3 +35,4 @@
   </mat-table>
 </div>
 <button mat-fab class="add-button" (click)="Agregar()">+</button>
+<router-outlet></router-outlet>

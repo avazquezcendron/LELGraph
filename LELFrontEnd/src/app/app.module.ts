@@ -23,8 +23,12 @@ import { SimbolosService } from './services/simbolos.service';
 import { ImpactosService } from './services/impactos.service';
 import { SimboloEditComponent } from './components/simbolo-edit/simbolo-edit.component';
 import { LelGraphComponent } from './components/lel-graph/lel-graph.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { NgxGraphModule } from '@swimlane/ngx-graph/src';
+import { LelStatsComponent } from './components/lel-stats/lel-stats.component';
+import { LelListComponent } from './components/lels/list/lel-list.component';
+import { D3Service, D3_DIRECTIVES } from './components/lel-graph/d3';
+import { SHARED_VISUALS } from './components/lel-graph/shared';
+import { AppRoutingModule } from './app-routing.module';
+import { LelsRoutingModule } from './components/lels/lels-routing.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,11 @@ import { NgxGraphModule } from '@swimlane/ngx-graph/src';
     LelsComponent,
     LelEditComponent,
     SimboloEditComponent,
-    LelGraphComponent
+    LelGraphComponent,
+    ...SHARED_VISUALS,
+    ...D3_DIRECTIVES,
+    LelStatsComponent,
+    LelListComponent
   ],
   imports: [
     BrowserModule,
@@ -50,17 +58,17 @@ import { NgxGraphModule } from '@swimlane/ngx-graph/src';
     MatButtonModule,
     MatTableModule,
     MatMenuModule,
-    NgxChartsModule,
-    NgxGraphModule,
-    RouterModule.forRoot([
-      { path: 'lels', component: LelsComponent },
-      { path: 'lel-graph' , component: LelGraphComponent },
-      { path: 'lel-edit/:operacion/:id' , component: LelEditComponent },
-      { path: 'simbolo-edit/:operacion/:lelId/:id' , component: SimboloEditComponent },
-      { path: '', redirectTo: '/lels', pathMatch: 'full' },
-    ])
+    AppRoutingModule,
+    LelsRoutingModule
+    // RouterModule.forRoot([
+    //   { path: 'lels', component: LelsComponent },
+    //   { path: 'lel-stats/:id' , component: LelStatsComponent },
+    //   { path: 'lel-edit/:operacion/:id' , component: LelEditComponent },
+    //   { path: 'simbolo-edit/:operacion/:lelId/:id' , component: SimboloEditComponent },
+    //   { path: '', redirectTo: '/lels', pathMatch: 'full' },
+    // ])
   ],
-  providers: [LELsService, SimbolosService, ImpactosService],
+  providers: [LELsService, SimbolosService, ImpactosService, D3Service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
