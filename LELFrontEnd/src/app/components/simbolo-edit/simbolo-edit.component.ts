@@ -16,8 +16,9 @@ import { LELsService } from '../../services/lels.service';
 export class SimboloEditComponent implements OnInit {
 
   dataSource: MatTableDataSource<Impacto>;
-  displayedColumns = ['descripcion'];
+  displayedColumns = ['descripcion', 'acciones'];
   simboloSeleccionado: Simbolo;
+  operacionLEL: string;
 
   constructor(private _router: Router,
     private _activeRoute: ActivatedRoute,
@@ -27,6 +28,7 @@ export class SimboloEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.operacionLEL = this._activeRoute.snapshot.paramMap.get('op');
     const operacion = this._activeRoute.snapshot.paramMap.get('sbOp');
     const id = Number(this._activeRoute.snapshot.paramMap.get('sbId'));
     const lelId = Number(this._activeRoute.snapshot.paramMap.get('id'));
@@ -61,11 +63,13 @@ export class SimboloEditComponent implements OnInit {
   }
 
   EditarImpacto(impacto: Impacto) {
-
+    this._router.navigate(['/lels', this.simboloSeleccionado.lelId,
+      this.operacionLEL, 'impacto', impacto.id, 'editar']);
   }
 
   AgregarImpacto() {
-
+    this._router.navigate(['/lels', this.simboloSeleccionado.lelId,
+      this.operacionLEL, 'impacto', 0, 'agregar']);
   }
 
   EliminarImpacto(impacto: Impacto) {

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Impacto } from '../BEs/impacto';
+import { SimbolosService } from './simbolos.service';
 
 @Injectable()
 export class ImpactosService {
@@ -10,7 +11,7 @@ export class ImpactosService {
     }
   ];
 
-  constructor() { }
+  constructor(private _simbolosSrv: SimbolosService) { }
 
   GetAll(simboloId: number): Impacto[] {
     return this._impactos.filter(a => (a.simbolos.includes(simboloId)));
@@ -24,8 +25,21 @@ export class ImpactosService {
     return this._impactos[index];
   }
 
+  private procesarSimbolos(texto: string): number[] {
+    const result = [];
+    const me = this;
+    texto.split(' ').forEach(function (value) {
+      const simbolo = me._simbolosSrv.GetByNombre(value);
+      if (simbolo != null) {
+        result.push(simbolo.id);
+      }
+    });
+    return result;
+  }
+
   Add(impacto: Impacto): number {
     impacto.id = new Date().valueOf(); // "unique" id
+    impacto.simbolos = this.procesarSimbolos(impacto.descripcion);
     this._impactos.push(impacto);
     return impacto.id;
   }
@@ -38,6 +52,7 @@ export class ImpactosService {
   Update(impacto: Impacto) {
     const index = this._impactos.findIndex((a) => a.id === impacto.id);
     if (index >= 0) {
+      impacto.simbolos = this.procesarSimbolos(impacto.descripcion);
       this._impactos[index] = impacto;
     } else {
       throw new Error('Impacto inexistente');

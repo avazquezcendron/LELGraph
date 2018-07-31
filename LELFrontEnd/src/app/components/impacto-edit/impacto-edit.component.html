@@ -1,0 +1,21 @@
+<mat-card *ngIf="impactoSeleccionado">
+  <h2 *ngIf="impactoSeleccionado.id != 0">Editar Impacto</h2>
+  <h2 *ngIf="impactoSeleccionado.id == 0">Agregar Impacto</h2>
+  <form novalidate #f="ngForm">
+    <mat-form-field class="all-width">
+        <textarea matInput required name="descripcion" placeholder="Impacto" [ngModel]="impactoSeleccionado.descripcion" #descripcion="ngModel">
+        </textarea>
+        <mat-error *ngIf="descripcion.invalid">Debe ingresar el Impacto</mat-error>
+    </mat-form-field>
+    <br/>
+    <mat-card-actions>
+      <button mat-raised-button class="btn btn-default" (click)="Regresar()">
+        Cancelar
+      </button>
+      <button mat-raised-button color="primary" [disabled]="f.invalid" (click)="Guardar(f.value)" class="btn btn-primary">
+        Aceptar
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>
+<br/>

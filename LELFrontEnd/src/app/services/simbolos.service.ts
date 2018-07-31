@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Simbolo } from '../BEs/simbolo';
 import { Categoria } from '../types/categorias';
-import { ImpactosService } from './impactos.service';
 
 @Injectable()
 export class SimbolosService {
@@ -29,7 +28,7 @@ export class SimbolosService {
     }
   ];
 
-  constructor(private _impactosSrv: ImpactosService) { }
+  constructor() { }
 
   GetAll(lelId: number): Simbolo[] {
     return this._simbolos.filter(a => a.lelId === lelId);
@@ -37,6 +36,14 @@ export class SimbolosService {
 
   Get(id: number): Simbolo {
     const index = this._simbolos.findIndex((a) => a.id === id);
+    if (index < 0) {
+      return null;
+    }
+    return this._simbolos[index];
+  }
+
+  GetByNombre(nombre: string): Simbolo {
+    const index = this._simbolos.findIndex((a) => a.nombre.toLowerCase() === nombre.toLowerCase());
     if (index < 0) {
       return null;
     }

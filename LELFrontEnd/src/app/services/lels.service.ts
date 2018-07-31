@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { LEL } from '../BEs/lel';
-import { SimbolosService } from './simbolos.service';
 
 @Injectable()
 export class LELsService {
@@ -11,7 +10,7 @@ export class LELsService {
     }
   ];
 
-  constructor(private _simbolosSrv: SimbolosService) { }
+  constructor() { }
 
   GetAll(): LEL[] {
     return this._lels;

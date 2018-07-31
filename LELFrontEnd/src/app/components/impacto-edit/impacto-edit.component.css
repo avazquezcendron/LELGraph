@@ -1,0 +1,12 @@
+.all-width {
+  width: 100%;
+  margin-bottom: 0.5em;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-box mat-form-field {
+  flex: 1 1 auto;
+}

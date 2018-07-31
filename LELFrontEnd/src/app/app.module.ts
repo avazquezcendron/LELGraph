@@ -29,6 +29,7 @@ import { D3Service, D3_DIRECTIVES } from './components/lel-graph/d3';
 import { SHARED_VISUALS } from './components/lel-graph/shared';
 import { AppRoutingModule } from './app-routing.module';
 import { LelsRoutingModule } from './components/lels/lels-routing.module';
+import { ImpactoEditComponent } from './components/impacto-edit/impacto-edit.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { LelsRoutingModule } from './components/lels/lels-routing.module';
     ...SHARED_VISUALS,
     ...D3_DIRECTIVES,
     LelStatsComponent,
-    LelListComponent
+    LelListComponent,
+    ImpactoEditComponent
   ],
   imports: [
     BrowserModule,

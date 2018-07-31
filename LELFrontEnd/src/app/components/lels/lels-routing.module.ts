@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { SimboloEditComponent } from '../simbolo-edit/simbolo-edit.component';
 import { LelListComponent } from './list/lel-list.component';
+import { ImpactoEditComponent } from '../impacto-edit/impacto-edit.component';
 
 const lelsRoutes: Routes = [
   {
@@ -26,6 +27,10 @@ const lelsRoutes: Routes = [
   {
     path: 'lels/:id/:op/simbolo/:sbId/:sbOp',
     component: SimboloEditComponent
+  },
+  {
+    path: 'lels/:id/:op/impacto/:sbId/:sbOp',
+    component: ImpactoEditComponent
   }
 ];
 
